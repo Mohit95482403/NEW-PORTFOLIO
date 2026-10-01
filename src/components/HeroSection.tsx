@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import watermarkImg from '../assets/watermark.png';
@@ -36,16 +36,54 @@ const navItems = [
 ];
 
 export const HeroSection: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // React's 'muted' prop does not reliably set HTMLMediaElement.muted in WebKit/Safari/Chrome
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    const playVideo = () => {
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // Autoplay was blocked by browser policy (e.g. mobile battery saver or restrictive MEI)
+          // Play automatically on first user touch/click/scroll gesture
+          const startOnGesture = () => {
+            if (video.paused) {
+              video.play().catch(() => {});
+            }
+            window.removeEventListener('touchstart', startOnGesture);
+            window.removeEventListener('click', startOnGesture);
+            window.removeEventListener('scroll', startOnGesture);
+          };
+          window.addEventListener('touchstart', startOnGesture, { passive: true });
+          window.addEventListener('click', startOnGesture);
+          window.addEventListener('scroll', startOnGesture, { passive: true });
+        });
+      }
+    };
+
+    playVideo();
+  }, []);
+
   return (
     <section className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black">
 
       {/* ================= 2. FIXED VIDEO LAYER ================= */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-center md:justify-end">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          src="/videos/herovideo.mp4"
           className="w-full h-full object-cover object-[center_25%] md:h-screen md:w-auto md:max-w-none md:object-contain md:origin-right md:scale-[0.98] lg:scale-100"
         >
           <source src="/videos/herovideo.mp4" type="video/mp4" />
