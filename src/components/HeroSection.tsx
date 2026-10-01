@@ -42,16 +42,23 @@ export const HeroSection: React.FC = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // React's 'muted' prop does not reliably set HTMLMediaElement.muted in WebKit/Safari/Chrome
+    // Strictly ensure no controls and muted autoplay in DOM
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.controls = false;
+
+    // Ensure continuous infinite repeat loop
+    const handleEnded = () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+    video.addEventListener('ended', handleEnded);
 
     const playVideo = () => {
       const promise = video.play();
       if (promise !== undefined) {
         promise.catch(() => {
-          // Autoplay was blocked by browser policy (e.g. mobile battery saver or restrictive MEI)
           // Play automatically on first user touch/click/scroll gesture
           const startOnGesture = () => {
             if (video.paused) {
@@ -69,6 +76,10 @@ export const HeroSection: React.FC = () => {
     };
 
     playVideo();
+
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+    };
   }, []);
 
   return (
@@ -82,9 +93,12 @@ export const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
           preload="auto"
           src="/videos/herovideo.mp4"
-          className="w-full h-full object-cover object-[center_25%] md:h-screen md:w-auto md:max-w-none md:object-contain md:origin-right md:scale-[0.98] lg:scale-100"
+          className="w-full h-full object-cover object-[center_25%] md:h-screen md:w-auto md:max-w-none md:object-contain md:origin-right md:scale-[0.98] lg:scale-100 pointer-events-none select-none"
         >
           <source src="/videos/herovideo.mp4" type="video/mp4" />
         </video>
