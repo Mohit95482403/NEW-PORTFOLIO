@@ -1,32 +1,68 @@
-# React + TypeScript + Vite
+# ✨ Cinematic Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An ultra-premium, cinematic software developer portfolio built with modern web technologies, smooth micro-interactions, responsive luxury typography, and dark-mode aesthetics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌟 Key Features
 
-## React Compiler
+- **Cinematic Hero**: Ambient visual backdrop, sleek monoline branding, and responsive headline typography.
+- **About Me**: Interactive portrait frame with cursor-tracking holographic spotlight sweep and achievement metrics.
+- **Featured Projects**: Interactive showcases with scheme dialogs, live explore links, tech stack badges, and architecture breakdowns.
+- **Core Capabilities & Skills**: Comprehensive interactive skills matrix categorizing frontend, backend, database architectures, and development workflows.
+- **Academic Background**: Clean timeline highlighting formal higher education degrees (MCA & BCA with Honors) with coursework chips and status badges.
+- **Professional Certificates Showcase**: Visual dark-mode gold-foil certificate cards with an interactive fullscreen lightbox modal preview.
+- **Coding Odyssey**: An interactive 5-phase chronological roadmap tracing the developer's journey, breakthroughs, and technical evolution.
+- **Interactive Resume Modal**: In-depth printable and viewable resume modal with quick contact and download buttons.
+- **Mobile Responsive**: Fully optimized with touch gestures, adaptive grids, swipeable tabs, and zero horizontal overflow.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🛠️ Technology Stack
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- **Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Bundler & Tooling**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Motion & Kinematics**: [Framer Motion](https://www.framer.com/motion/)
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Mohit95482403/NEW-PORTFOLIO.git
+
+# Navigate to the project directory
+cd NEW-PORTFOLIO
+
+# Install dependencies
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Running Locally
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.

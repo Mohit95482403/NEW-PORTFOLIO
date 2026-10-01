@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import aboutImg from '../assets/about.png';
+import aboutImg from '../assets/aboutmain.jpg';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -67,33 +67,33 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section 
-      id="about" 
-      className="relative w-screen min-h-screen bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden flex items-center"
+    <section
+      id="about"
+      className="relative w-full min-h-screen bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden flex items-center"
     >
       {/* ================= BACKGROUND GLOWS & FLOATING PARTICLES ================= */}
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.16, 0.08] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-1/4 left-1/6 w-[32rem] h-[32rem] bg-[#D4AF37] rounded-full blur-[160px] pointer-events-none"
       />
-      <motion.div 
+      <motion.div
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.12, 0.05] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-1/6 right-1/4 w-[28rem] h-[28rem] bg-[#8C6D4F] rounded-full blur-[170px] pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+
         {/* Eyebrow Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center space-x-4 mb-10"
         >
-          <span 
+          <span
             className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
@@ -104,7 +104,7 @@ export const AboutSection: React.FC = () => {
 
         {/* Main Grid: Content + Portrait */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* ================= LEFT CONTENT (7 COLS) ================= */}
           <motion.div
             variants={containerVariants}
@@ -120,10 +120,10 @@ export const AboutSection: React.FC = () => {
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_10px_rgba(0,0,0,0.85)]">
-                  I DON'T JUST WRITE CODE.
+                  TURNING IDEAS INTO
                 </span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.3)]">
-                  I BUILD WHAT'S NEXT.
+                  WORKING SOFTWARE.
                 </span>
               </h2>
             </motion.div>
@@ -134,63 +134,63 @@ export const AboutSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-10 max-w-xl"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I'm <span className="text-[#F3DBB3] font-medium">Damisetti Shamya Lohitha</span>, a Full Stack Developer and Data Science student specializing in building scalable web architectures, AI-integrated platforms, and refined digital experiences. With a strong algorithmic foundation and a focus on clean engineering, I turn complex requirements into impactful products.
+              I'm <span className="text-[#F3DBB3] font-medium">Nayana Chaudhari</span>, a software developer and Master of Computer Applications (MCA) student at G.H. Raisoni College of Engineering &amp; Management, Jalgaon. I graduated with Honors in BCA from Moolji Jaitha College. I love building responsive frontend web applications with React.js and writing clean, reliable backend services with Node.js, MySQL, and MongoDB. I am continuously learning and looking forward to contributing to great software teams.
             </motion.p>
 
             {/* Concise 4-Item Achievement Metrics Grid */}
-            <motion.div 
+            <motion.div
               variants={fadeUpVariants}
               className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 pb-2 border-t border-[#8C6D4F]/25"
             >
               {/* Stat 1 */}
               <div className="flex flex-col">
-                <span 
+                <span
                   className="text-3xl sm:text-4xl font-light text-[#F4EBE2] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  1200+
+                  MCA '27
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  DSA Solved
+                  G.H. Raisoni College
                 </span>
               </div>
 
               {/* Stat 2 */}
               <div className="flex flex-col">
-                <span 
+                <span
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  9.07
+                  BCA HONORS
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  B.Tech CGPA
+                  M.J. College
                 </span>
               </div>
 
               {/* Stat 3 */}
               <div className="flex flex-col">
-                <span 
+                <span
                   className="text-3xl sm:text-4xl font-light text-[#F4EBE2] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  40+
+                  10+
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Industry-Grade Projects
+                  Certifications
                 </span>
               </div>
 
               {/* Stat 4 */}
               <div className="flex flex-col">
-                <span 
+                <span
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Top 100
+                  FULL STACK
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Myntra Hackerramp
+                  React &amp; Node.js
                 </span>
               </div>
             </motion.div>
@@ -198,9 +198,9 @@ export const AboutSection: React.FC = () => {
 
           {/* ================= RIGHT PORTRAIT FRAME (PERFECT LOCKED GEOMETRY) ================= */}
           <div className="lg:col-span-5 flex items-center justify-center relative perspective-[1400px]">
-            
+
             {/* Ambient Animated Gold Glow Ring Behind Frame */}
-            <motion.div 
+            <motion.div
               animate={{
                 scale: isCardHovered ? 1.15 : 1,
                 opacity: isCardHovered ? 0.35 : 0.15,
@@ -243,7 +243,7 @@ export const AboutSection: React.FC = () => {
             >
               {/* Dynamic Laser Border Pulse on Card Perimeter */}
               <div className="absolute inset-0 rounded-sm pointer-events-none overflow-hidden">
-                <motion.div 
+                <motion.div
                   animate={{ x: isCardHovered ? ['-100%', '200%'] : '-100%' }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }}
                   className="w-1/2 h-full bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent skew-x-12"
@@ -263,7 +263,7 @@ export const AboutSection: React.FC = () => {
                 {/* Main Portrait */}
                 <img
                   src={aboutImg}
-                  alt="Damisetti Shamya Lohitha"
+                  alt="Nayana Chaudhari"
                   className="w-full h-full object-cover object-top filter brightness-[0.94] contrast-[1.06] saturate-[1.02] group-hover:brightness-105 group-hover:contrast-[1.12] transition-all duration-700 ease-out"
                 />
 
@@ -281,11 +281,11 @@ export const AboutSection: React.FC = () => {
 
                 {/* Monoline Signature */}
                 <div className="absolute bottom-4 right-4 z-20 select-none">
-                  <span 
+                  <span
                     className="text-3xl text-[#F2D8A7] drop-shadow-[0_0_12px_rgba(242,216,167,0.5)] transition-colors duration-300 group-hover:text-white"
                     style={{ fontFamily: "'Herr Von Muellerhoff', cursive" }}
                   >
-                    Lohitha
+                    Nayana
                   </span>
                 </div>
               </div>

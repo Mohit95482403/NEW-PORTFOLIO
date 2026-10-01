@@ -1,9 +1,9 @@
-import React from 'react';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ExperienceSection } from './components/ExperienceSection';
+import { JourneySection } from './components/JourneySection';
 import { ContactSection } from './components/ContactSection';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />
+      <JourneySection />
       <ContactSection />
     </div>
   );

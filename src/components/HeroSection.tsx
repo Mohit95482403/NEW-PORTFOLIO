@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import watermarkImg from '../assets/watermark.png';
@@ -31,58 +31,37 @@ const navItems = [
   { name: 'ABOUT', href: '#about' },
   { name: 'PROJECTS', href: '#work' },
   { name: 'SKILLS', href: '#skills' },
-  { name: 'EXPERIENCE', href: '#experience' },
+  { name: 'EDUCATION', href: '#education' },
   { name: 'CONTACT', href: '#contact' },
 ];
 
 export const HeroSection: React.FC = () => {
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <section className="relative w-screen h-screen overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black cursor-none">
-      {/* ================= 1. MINIMAL CUSTOM CURSOR ================= */}
-      {cursorPos.x >= 0 && (
-        <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-50 rounded-full border border-[#D4AF37]/40 flex items-center justify-center backdrop-blur-[1px]"
-          animate={{
-            x: cursorPos.x - (isHovered ? 24 : 5),
-            y: cursorPos.y - (isHovered ? 24 : 5),
-            width: isHovered ? 48 : 10,
-            height: isHovered ? 48 : 10,
-            backgroundColor: isHovered ? 'rgba(212, 175, 55, 0.1)' : 'rgba(235, 215, 195, 0.95)',
-          }}
-          transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 0.5 }}
-        />
-      )}
+    <section className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black">
 
       {/* ================= 2. FIXED VIDEO LAYER ================= */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-end">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-center md:justify-end">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="h-screen w-auto max-w-none object-contain origin-right scale-95 md:scale-[0.98] lg:scale-100"
+          className="w-full h-full object-cover object-[center_25%] md:h-screen md:w-auto md:max-w-none md:object-contain md:origin-right md:scale-[0.98] lg:scale-100"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/herovideo.mp4" type="video/mp4" />
         </video>
 
-        {/* Seamless Soft Left Edge Blend */}
-        <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black via-black/85 to-transparent pointer-events-none" />
+        {/* Mobile Gradient Vignette (Keeps character visible while enhancing text contrast) */}
+        <div className="block md:hidden absolute inset-0 bg-gradient-to-t from-black via-black/65 to-black/30 pointer-events-none" />
+        <div className="block md:hidden absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+        {/* Desktop Seamless Soft Left Edge Blend */}
+        <div className="hidden md:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black via-black/85 to-transparent pointer-events-none" />
 
         {/* ================= 3. ANIMATED WATERMARK EMBLEM ================= */}
-        <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-12 pointer-events-none flex items-center justify-center z-10">
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-10 lg:right-12 pointer-events-none flex items-center justify-center z-10">
           <div className="relative flex items-center justify-center">
-            <div className="absolute w-36 h-36 bg-black/85 rounded-full blur-xl" />
+            <div className="absolute w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 bg-black/85 rounded-full blur-xl" />
 
             <motion.div
               animate={{
@@ -99,7 +78,7 @@ export const HeroSection: React.FC = () => {
               <img
                 src={watermarkImg}
                 alt="Insignia"
-                className="w-28 h-28 lg:w-32 lg:h-32 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.25)]"
+                className="w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.25)]"
               />
             </motion.div>
           </div>
@@ -107,18 +86,16 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* ================= 4. CONTENT LAYER ================= */}
-      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 sm:px-12 lg:px-16 pt-6 pb-8 pointer-events-none">
-        
+      <div className="relative z-10 flex flex-col justify-between h-full w-full px-5 sm:px-12 lg:px-16 pt-5 sm:pt-6 pb-6 sm:pb-8 pointer-events-none">
+
         {/* Navigation Bar */}
         <header className="relative flex items-center justify-between w-full pointer-events-auto">
           <a
             href="#"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
             className="text-xs sm:text-sm font-semibold tracking-[0.35em] uppercase text-[#EAD8C7] hover:opacity-75 transition-opacity"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            LOHITHA.
+            NAYANA.
           </a>
 
           {/* Navigation Links */}
@@ -130,8 +107,6 @@ export const HeroSection: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className="relative group py-1 transition-colors duration-300 hover:text-[#FFF5EB]"
               >
                 {item.name}
@@ -143,8 +118,7 @@ export const HeroSection: React.FC = () => {
           {/* Right Action */}
           <a
             href="#contact"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            data-cursor="CHAT"
             className="group flex items-center space-x-2 text-[11px] tracking-[0.24em] font-light uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] text-[#EAD8C7] transition-all duration-300 backdrop-blur-sm ml-auto md:ml-0"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
@@ -157,7 +131,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Main Hero Row */}
         <div className="relative flex flex-col md:flex-row items-center justify-between w-full pt-4 pb-2 my-auto">
-          
+
           {/* LEFT: Balanced Headline & Actions */}
           <motion.div
             variants={containerVariants}
@@ -168,7 +142,7 @@ export const HeroSection: React.FC = () => {
             {/* Massive Condensed Headline */}
             <motion.div variants={fadeUpVariants} className="relative mb-3.5 select-none">
               <h1
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.2rem] xl:text-[7.8rem] tracking-tight uppercase leading-[0.83]"
+                className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-[7.2rem] xl:text-[7.8rem] tracking-tight uppercase leading-[0.85]"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 {/* Line 1: I BUILD */}
@@ -191,10 +165,10 @@ export const HeroSection: React.FC = () => {
             {/* Subtitle Technologies */}
             <motion.div variants={fadeUpVariants} className="mb-4">
               <p
-                className="text-[10px] sm:text-[11px] md:text-xs font-normal tracking-[0.28em] uppercase text-[#C4B29E]"
+                className="text-[9.5px] sm:text-[11px] md:text-xs font-normal tracking-[0.24em] sm:tracking-[0.28em] uppercase text-[#C4B29E]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                FULL STACK DEVELOPER <span className="text-[#8C6D4F] mx-1">•</span> UI/UX DESIGNER <span className="text-[#8C6D4F] mx-1">•</span> DATA SCIENCE
+                SOFTWARE DEVELOPER <span className="text-[#8C6D4F] mx-1">•</span> FRONTEND &amp; BACKEND <span className="text-[#8C6D4F] mx-1">•</span> MCA SCHOLAR
               </p>
             </motion.div>
 
@@ -205,46 +179,44 @@ export const HeroSection: React.FC = () => {
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <p>
-                I turn bold ideas into seamless digital experiences.
+                Hi, I'm a software developer who loves creating clean, responsive websites and web applications.
                 <br />
-                Where frontend meets powerful backend, and code transforms vision into impact.
+                Working with React.js, Node.js, and structured databases like MySQL &amp; MongoDB.
               </p>
             </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
               variants={fadeUpVariants}
-              className="flex flex-row items-center gap-4 sm:gap-6"
+              className="flex flex-row flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-6"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               {/* Explore My Work CTA */}
               <motion.a
                 href="#work"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                data-cursor="PORTFOLIO"
                 whileHover={{ scale: 1.02 }}
-                className="relative inline-flex items-center space-x-3 px-6 sm:px-7 py-3.5 border border-[#8C6D4F] bg-[#120F0C]/80 hover:border-[#D4AF37] text-[#EAD8C7] hover:text-[#FFF5EB] text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.18)]"
+                className="relative inline-flex items-center space-x-2 sm:space-x-3 px-4 sm:px-7 py-3 sm:py-3.5 border border-[#8C6D4F] bg-[#120F0C]/80 hover:border-[#D4AF37] text-[#EAD8C7] hover:text-[#FFF5EB] text-[10px] sm:text-[11px] font-medium tracking-[0.22em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.18)]"
               >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#E8D7C5]/40 to-transparent pointer-events-none" />
-                <span>EXPLORE MY WORK</span>
+                <span>SEE MY WORK</span>
                 <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
                   ↗
                 </span>
               </motion.a>
 
-              {/* Download Resume Button */}
+              {/* Direct View Resume PDF Link */}
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                data-cursor="RESUME ↗"
                 whileHover={{ scale: 1.02 }}
-                className="relative inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#8C6D4F]/40 hover:border-[#8C6D4F] text-[#BFA895] hover:text-[#EAD8C7] text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300"
+                className="relative inline-flex items-center space-x-2 px-4 sm:px-7 py-3 sm:py-3.5 border border-[#8C6D4F]/40 hover:border-[#D4AF37] text-[#BFA895] hover:text-[#EAD8C7] text-[10px] sm:text-[11px] font-medium tracking-[0.22em] uppercase transition-all duration-300"
               >
-                <span>DOWNLOAD RESUME</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-xs">
-                  ↓
+                <span>VIEW RESUME</span>
+                <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
+                  ↗
                 </span>
               </motion.a>
             </motion.div>
@@ -263,26 +235,26 @@ export const HeroSection: React.FC = () => {
             </span>
 
             {/* 2. Compact Two-Line Statement */}
-            <div 
+            <div
               className="text-[9.5px] font-medium tracking-[0.24em] uppercase text-[#E0D3C5] space-y-1 mb-3"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <p>CODE IS MY CRAFT.</p>
-              <p>IMPACT IS MY GOAL.</p>
+              <p>BUILDING WITH PASSION.</p>
+              <p>SOLVING REAL PROBLEMS.</p>
             </div>
 
             {/* 3. Gold Accent Line */}
             <div className="w-28 h-[1px] bg-gradient-to-r from-[#D4AF37] via-[#E8D7C5]/70 to-transparent shadow-[0_0_8px_rgba(212,175,55,0.4)] mb-2" />
 
             {/* 4. Fine Monoline Calligraphy Signature */}
-            <div 
+            <div
               className="text-[2.2rem] text-[#D8AB64] font-normal leading-none -ml-0.5"
-              style={{ 
+              style={{
                 fontFamily: "'Herr Von Muellerhoff', 'Allura', cursive",
                 letterSpacing: '0.04em',
               }}
             >
-              Lohitha
+              Nayana
             </div>
           </motion.div>
         </div>
@@ -290,6 +262,7 @@ export const HeroSection: React.FC = () => {
         {/* Bottom Spacer */}
         <div className="h-2" />
       </div>
+
     </section>
   );
 };
